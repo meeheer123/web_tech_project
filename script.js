@@ -1,10 +1,3 @@
-function welcomeSpeech() {
-    const msg = new SpeechSynthesisUtterance();
-    msg.text = "Welcome to FoodTech! You can navigate this site using keyboard shortcuts: Alt plus H for Home, Alt plus M for Menu, Alt plus S for Specials, Alt plus A for About Us, and Alt plus C for Contact.";
-    msg.lang = "en-US";  // Set language to English, US accent
-    window.speechSynthesis.speak(msg);
-  }
-
 const increaseFontBtn = document.getElementById('increase-font');
 const decreaseFontBtn = document.getElementById('decrease-font');
 let currentFontSize = 16;
