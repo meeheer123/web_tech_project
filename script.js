@@ -15,3 +15,21 @@ if (currentFontSize > 12) {
     document.body.style.fontSize = currentFontSize + 'px';
 }
 });
+
+document.addEventListener('keydown', function(event) {
+    if (event.altKey && event.key === 'h') {
+        document.getElementById('nav-home').click();
+    } else if (event.altKey && event.key === 'm') {
+        document.getElementById('nav-menu').click();
+    } else if (event.altKey && event.key === 's') {
+        document.getElementById('nav-specials').click();
+    } else if (event.altKey && event.key === 'a') {
+        document.getElementById('nav-about').click();
+    } else if (event.altKey && event.key === 'c') {
+        document.getElementById('nav-contact').click();
+    } else if (event.altKey && event.key === '+') {
+        document.getElementById('increase-font').click();
+    } else if (event.altKey && event.key === '-') {
+        document.getElementById('decrease-font').click();
+    }
+});
