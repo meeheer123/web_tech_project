@@ -3,20 +3,20 @@
     color: white;
     text-align: center;
     padding: 8rem 0;
-}
+  }
 
-.card:hover {
+  .card:hover {
     transform: translateY(-5px);
     transition: transform 0.2s;
-}
+  }
 
-.card-img-top {
+  .card-img-top {
     height: 200px; /* Fixed height for images */
     object-fit: cover; /* Ensures image covers the area without distortion */
-}
+  }
 
-.footer {
+  .footer {
     background-color: #343a40;
     color: white;
     padding: 20px 0;
-}
+  }
