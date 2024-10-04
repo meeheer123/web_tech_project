@@ -78,3 +78,46 @@ function smoothScrollToSection(sectionId) {
       });
     });
   });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+  function highlightNavLink() {
+    let scrollPosition = window.scrollY;
+
+    // Check for home section first
+    if (scrollPosition < sections[1].offsetTop - 100) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      document.querySelector('#nav-home').classList.add('active');
+      return;
+    }
+
+    // Check other sections
+    for (let i = 1; i < sections.length; i++) {
+      const section = sections[i];
+      const navLink = navLinks[i - 1]; // Adjust index to match nav links
+      
+      const sectionTop = section.offsetTop - 100; // Adjust this value as needed
+      const sectionBottom = sectionTop + section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        navLink.classList.add('active');
+        return; // Exit the loop once we've found the active section
+      }
+    }
+  }
+
+  window.addEventListener('scroll', highlightNavLink);
+  highlightNavLink(); // Call once on load to set initial state
+});
+
+// Existing font size adjustment code
+document.getElementById('increase-font').addEventListener('click', function() {
+  document.body.style.fontSize = parseFloat(getComputedStyle(document.body).fontSize) * 1.1 + 'px';
+});
+
+document.getElementById('decrease-font').addEventListener('click', function() {
+  document.body.style.fontSize = parseFloat(getComputedStyle(document.body).fontSize) * 0.9 + 'px';
+});
