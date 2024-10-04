@@ -82,6 +82,7 @@ function smoothScrollToSection(sectionId) {
 document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  let ticking = false;
 
   function highlightNavLink() {
     let scrollPosition = window.scrollY;
@@ -109,7 +110,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  window.addEventListener('scroll', highlightNavLink);
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        highlightNavLink();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll);
   highlightNavLink(); // Call once on load to set initial state
 });
 
