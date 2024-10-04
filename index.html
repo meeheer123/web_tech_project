@@ -10,14 +10,14 @@
 </head>
 <body>
   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #28a745;" role="navigation" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #28a745;" role="navigation" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand" href="#">FoodTech</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto" role="menubar">
+        <ul class="navbar-nav ms-auto me-3" role="menubar">
           <li class="nav-item" role="none">
             <a class="nav-link active" aria-current="page" href="#home" id="nav-home" role="menuitem">Home</a>
           </li>
@@ -35,11 +35,11 @@
           </li>
         </ul>
 
-        <!-- Accessibility Buttons -->
-        <div class="d-flex ms-3" role="group" aria-label="Font size controls">
-          <button class="btn btn-outline-light me-2" id="increase-font" aria-label="Increase font size">A+</button>
-          <button class="btn btn-outline-light" id="decrease-font" aria-label="Decrease font size">A-</button>
-        </div>
+        <!-- Search Bar -->
+        <form class="d-flex me-3" role="search" action="/search" method="GET">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
       </div>
     </div>
   </nav>
@@ -184,6 +184,17 @@
       </div>
     </section>
   </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container d-flex justify-content-center">
+      <!-- Accessibility Buttons -->
+      <div class="d-flex" role="group" aria-label="Font size controls">
+        <button class="btn btn-outline-light me-2" id="increase-font" aria-label="Increase font size">A+</button>
+        <button class="btn btn-outline-light" id="decrease-font" aria-label="Decrease font size">A-</button>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
