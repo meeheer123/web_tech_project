@@ -80,3 +80,8 @@
   border-color: #28a745;
   color: white;
 }
+
+:focus {
+  outline: 3px solid #2ecc71;
+  outline-offset: 2px;
+}
