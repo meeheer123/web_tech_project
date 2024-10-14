@@ -1,206 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script defer src="/_vercel/insights/script.js"></script>
-  <title>FoodTech</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- Navbar -->
-  <section id="home">
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #28a745;" role="navigation" aria-label="Main navigation">
-    <div class="container">
-      <a class="navbar-brand" href="#">FoodTech</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto me-3" role="menubar">
-          <li class="nav-item" role="none">
-            <a class="nav-link active" aria-current="page" href="#home" id="nav-home" role="menuitem">Home</a>
-          </li>
-          <li class="nav-item" role="none">
-            <a class="nav-link" href="#menu" id="nav-menu" role="menuitem">Menu</a>
-          </li>
-          <li class="nav-item" role="none">
-            <a class="nav-link" href="#specials" id="nav-specials" role="menuitem">Specials</a>
-          </li>
-          <li class="nav-item" role="none">
-            <a class="nav-link" href="#about" id="nav-about" role="menuitem">About Us</a>
-          </li>
-          <li class="nav-item" role="none">
-            <a class="nav-link" href="#contact" id="nav-contact" role="menuitem">Contact</a>
-          </li>
-        </ul>
-
-        <!-- Search Bar -->
-        <form class="d-flex me-3" role="search" action="/search" method="GET">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
-          <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home">
-    <header class="hero">
-      <div class="container">
-        <h1 class="display-4 fw-bold">Delicious Food at Your Fingertips</h1>
-        <p class="lead">Order now and experience the future of food delivery!</p>
-        <a href="#menu" class="btn btn-success btn-lg">Explore Menu</a>
-      </div>
-    </header>
-  </section>
-
-  <!-- Menu Section -->
-  <main id="main-content">
-    <section id="menu" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="text-center mb-5">Our Menu</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591" class="card-img-top" alt="Gourmet Burger">
-              <div class="card-body">
-                <h5 class="card-title">Gourmet Burger</h5>
-                <p class="card-text">Juicy beef patty with fresh veggies and our secret sauce.</p>
-                <p class="text-success fw-bold">$12.99</p>
-              </div>
-              <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3" class="card-img-top" alt="Veggie Delight Salad">
-              <div class="card-body">
-                <h5 class="card-title">Veggie Delight Salad</h5>
-                <p class="card-text">A mix of fresh greens, nuts, and tangy dressing.</p>
-                <p class="text-success fw-bold">$9.99</p>
-              </div>
-              <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" class="card-img-top" alt="Margherita Pizza">
-              <div class="card-body">
-                <h5 class="card-title">Margherita Pizza</h5>
-                <p class="card-text">Classic pizza with tomato, mozzarella, and basil.</p>
-                <p class="text-success fw-bold">$14.99</p>
-              </div>
-              <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
-              </div>
-            </div>
-          </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CodeCollab - Collaborative Code Editor with Video Call</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/editor/editor.main.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+        <style>
+            :root {
+                --primary-color: #3498db;
+                --secondary-color: #2ecc71;
+                --background-color: #f8f9fa;
+                --text-color: #333;
+                --border-color: #e0e0e0;
+                --output-bg-color: #2d3748;
+                --output-text-color: #e2e8f0;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Inter", sans-serif;
+                background-color: var(--background-color);
+                color: var(--text-color);
+            }
+            .container {
+                display: flex;
+                flex-direction: row;
+                height: calc(100vh - 60px);
+            }
+            #editor {
+                width: 60%;
+                height: 100%;
+                border-right: 1px solid var(--border-color);
+            }
+            .right-panel {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+            }
+            #video-container {
+                height: 30%;
+                background-color: #ffffff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-bottom: 1px solid var(--border-color);
+                position: relative;
+                overflow: hidden;
+            }
+            #remote-video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            #local-video {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                width: 100px;
+                height: 75px;
+                object-fit: cover;
+                border: 2px solid white;
+                border-radius: 5px;
+            }
+            .video-controls {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 10px;
+            }
+            .video-button {
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            .video-button:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            .output-section {
+                height: 70%;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--output-bg-color);
+            }
+            .control-panel {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #1a202c;
+                border-bottom: 1px solid #4a5568;
+            }
+            #language-select {
+                padding: 5px 10px;
+                border-radius: 4px;
+                border: 1px solid var(--border-color);
+                background-color: #2d3748;
+                color: var(--output-text-color);
+                font-family: "Inter", sans-serif;
+            }
+            #run-button {
+                padding: 8px 16px;
+                background-color: var(--secondary-color);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+            }
+            #run-button:hover {
+                background-color: #27ae60;
+            }
+            .input-output-container {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                overflow: hidden;
+            }
+            #custom-input,
+            #output {
+                flex-grow: 1;
+                padding: 10px;
+                font-family: "Fira Code", monospace;
+                font-size: 14px;
+                line-height: 1.6;
+                color: var(--output-text-color);
+                background-color: var(--output-bg-color);
+                border: none;
+                resize: none;
+            }
+            #custom-input {
+                border-bottom: 1px solid #4a5568;
+            }
+            .output-header,
+            .input-header {
+                background-color: #1a202c;
+                color: var(--output-text-color);
+                padding: 5px 10px;
+                font-weight: 500;
+                font-size: 14px;
+                border-bottom: 1px solid #4a5568;
+            }
+            .header {
+                background-color: #ffffff;
+                padding: 10px 20px;
+                border-bottom: 1px solid var(--border-color);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 40px;
+            }
+            .logo {
+                font-size: 24px;
+                font-weight: 600;
+                color: var(--primary-color);
+            }
+            .user-info {
+                font-size: 14px;
+                color: #888;
+            }
+            .user-cursor {
+                position: absolute;
+                width: 2px;
+                height: 1.2em;
+                background-color: var(--primary-color);
+                z-index: 100;
+                animation: blink 1s steps(2, start) infinite;
+            }
+            @keyframes blink {
+                50% {
+                    opacity: 0;
+                }
+            }
+            .username-label {
+                position: absolute;
+                background-color: var(--primary-color);
+                color: white;
+                padding: 2px 5px;
+                font-size: 12px;
+                border-radius: 3px;
+                z-index: 101;
+            }
+            @media (max-width: 1024px) {
+                .container {
+                    flex-direction: column;
+                }
+                #editor {
+                    width: 100%;
+                    height: 50vh;
+                    border-right: none;
+                }
+                .right-panel {
+                    width: 100%;
+                    height: 50vh;
+                }
+            }
+            @media (max-width: 768px) {
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .container {
+                    height: auto;
+                }
+                #video-container {
+                    height: 200px;
+                }
+                .output-section {
+                    height: auto;
+                }
+                .control-panel {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                #run-button {
+                    width: 100%;
+                    margin-top: 10px;
+                }
+            }
+            @media (max-width: 480px) {
+                .header {
+                    padding: 10px;
+                }
+                .logo {
+                    font-size: 20px;
+                }
+                #run-button {
+                    font-size: 12px;
+                    padding: 6px 12px;
+                }
+                #language-select {
+                    font-size: 12px;
+                    padding: 5px;
+                }
+                #custom-input,
+                #output {
+                    font-size: 12px;
+                    padding: 5px;
+                }
+                .input-output-container {
+                    overflow-y: auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">CodeCollab</div>
+            <div class="user-info">Connected as: <span id="username"></span></div>
         </div>
-      </div>
-    </section>
-
-    <!-- Specials Section -->
-    <section id="specials" class="py-5">
-      <div class="container">
-        <h2 class="text-center mb-5">Specials</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="https://dinnerthendessert.com/wp-content/uploads/2023/07/Truffle-Pasta-14.jpg" class="card-img-top" alt="Truffle Pasta">
-              <div class="card-body">
-                <h5 class="card-title">Truffle Pasta</h5>
-                <p class="card-text">Fresh pasta with truffle cream sauce and mushrooms.</p>
-                <p class="text-success fw-bold">$18.99</p>
-              </div>
-              <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
-              </div>
+        <div class="container">
+            <div id="editor"></div>
+            <div class="right-panel">
+                <div id="video-container">
+                    <video id="remote-video" autoplay playsinline></video>
+                    <video id="local-video" autoplay playsinline muted></video>
+                    <div class="video-controls">
+                        <button id="toggle-audio" class="video-button">🎤</button>
+                        <button id="toggle-video" class="video-button">📹</button>
+                    </div>
+                </div>
+                <div class="output-section">
+                    <div class="control-panel">
+                        <select id="language-select">
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="cpp">C++</option>
+                        </select>
+                        <button id="run-button">Run Code</button>
+                    </div>
+                    <div class="input-output-container">
+                        <div class="input-header">Custom Input</div>
+                        <textarea id="custom-input" placeholder="Enter custom input here..."></textarea>
+                        <div class="output-header">Output</div>
+                        <div id="output"></div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="https://images.unsplash.com/photo-1543353071-873f17a7a088" class="card-img-top" alt="Sushi Platter">
-              <div class="card-body">
-                <h5 class="card-title">Sushi Platter</h5>
-                <p class="card-text">A variety of fresh sushi with soy sauce and wasabi.</p>
-                <p class="text-success fw-bold">$29.99</p>
-              </div>
-              <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="https://www.shutterstock.com/image-photo/flavorful-grilled-ribeye-steak-buttery-260nw-2280033081.jpg" class="card-img-top" alt="Grilled Ribeye Steak">
-              <div class="card-body">
-                <h5 class="card-title">Grilled Ribeye Steak</h5>
-                <p class="card-text">Perfectly grilled ribeye steak served with herb butter.</p>
-                <p class="text-success fw-bold">$32.99</p>
-              </div>
-              <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+        <script src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>
+        <script>
+            const username = "user" + Math.floor(Math.random() * 1000);
+            document.getElementById("username").textContent = username;
 
-    <!-- About Us Section -->
-    <section id="about" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="text-center mb-5">About Us</h2>
-        <p class="text-center">At FoodTech, we believe in delivering high-quality meals right to your doorstep. Our team is dedicated to offering a wide variety of gourmet meals prepared by experienced chefs, ensuring that each meal brings joy and satisfaction. We are passionate about using fresh ingredients and delivering excellent customer service to make your dining experience memorable.</p>
-      </div>
-    </section>
+            const clientId = Math.random().toString(36).substr(2, 9);
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-      <div class="container">
-        <h2 class="text-center mb-5">Contact Us</h2>
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <form>
-              <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Your Name">
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-              </div>
-              <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" rows="3" placeholder="Your message"></textarea>
-              </div>
-              <button type="submit" class="btn btn-success">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+            const urlParams = new URLSearchParams(window.location.search);
+            const roomId = urlParams.get("room") || "default";
 
-  <!-- Footer Section -->
-  <footer class="footer">
-    <div class="container d-flex justify-content-center">
-      <!-- Accessibility Buttons -->
-      <div class="d-flex" role="group" aria-label="Font size controls">
-        <button class="btn btn-outline-light me-2" id="increase-font" aria-label="Increase font size">A+</button>
-        <button class="btn btn-outline-light" id="decrease-font" aria-label="Decrease font size">A-</button>
-      </div>
-    </div>
-  </footer>
+            const socket = new WebSocket(`wss://spectrum-working-surf.glitch.me/?room=${roomId}`);
 
-  <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
+            let editor;
+            let cursorDecorations = {};
+            let isRemoteUpdate = false;
+
+            // WebRTC variables
+            let localStream;
+            let remoteStream;
+            let peerConnection;
+            let isAudioMuted = false;
+            let isVideoOff = false;
+
+            require.config({ paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor/min/vs" } });
+            require(["vs/editor/editor.main"], function () {
+                editor = monaco.editor.create(document.getElementById("editor"), {
+                    value: "// Start coding here...\n",
+                    language: "javascript",
+                    theme: "vs-dark",
+                    fontSize: 14,
+                    minimap: { enabled: false },
+                    automaticLayout: true,
+                });
+
+                editor.onDidChangeModelContent((event) => {
+                    if (isRemoteUpdate) return;
+
+                    const changes = event.changes;
+                    if (socket.readyState === WebSocket.OPEN) {
+                        socket.send(
+                            JSON.stringify({
+                                type: "delta",
+                                data: { changes, username, clientId },
+                            })
+                        );
+                    }
+                });
+
+                editor.onDidChangeCursorPosition((e) => {
+                    if (isRemoteUpdate) return;
+
+                    const position = editor.getPosition();
+                    if (socket.readyState === WebSocket.OPEN) {
+                        socket.send(
+                            JSON.stringify({
+                                type: "cursor",
+                                data: { username, position, clientId },
+                            })
+                        );
+                    }
+                });
+
+                document.getElementById('language-select').addEventListener('change', ()=> {
+                    if (socket.readyState === WebSocket.OPEN) {
+                        socket.send(
+                            JSON.stringify({
+                                type: "language",
+                                data: { language: document.getElementById("language-select").value, username, clientId },
+                            })
+                        );
+                    }
+                });
+
+                document.getElementById("custom-input").addEventListener('change', () => {
+                    if (socket.readyState === WebSocket.OPEN) {
+                        socket.send(
+                            JSON.stringify({
+                                type: "change-input",
+                                data: { input: document.getElementById("custom-input").value, username, clientId },
+                            })
+                        );
+                    }
+                });
+
+                socket.onmessage = (event) => {
+                    if (event.data instanceof Blob) {
+                        const reader = new FileReader();
+                        reader.onload = function () {
+                            const message = JSON.parse(reader.result);
+
+                            if (message.data.clientId === clientId) return;
+
+                            if (message.type === "delta") {
+                                isRemoteUpdate = true;
+                                applyDeltas(message.data.changes);
+                                isRemoteUpdate = false;
+                            } else if (message.type === "cursor") {
+                                updateCursor(message.data);
+                            } else if (message.type === "run-output") {
+                                displayOutput(message.data.output);
+                            } else if (message.type === "language") {
+                                setLanguage(message.data.language);
+                            } else if (message.type === "change-input") {
+                                displayInput(message.data);
+                            } else if (message.type === "webrtc-signal") {
+                                handleWebRTCSignal(message.data);
+                            }
+                        };
+                        reader.readAsText(event.data);
+                    }
+                };
+
+                function applyDeltas(changes) {
+                    editor.executeEdits(
+                        null,
+                        changes.map((change) => ({
+                            range: new monaco.Range(change.range.startLineNumber, change.range.startColumn, change.range.endLineNumber, change.range.endColumn),
+                            text: change.text,
+                            forceMoveMarkers: change.forceMoveMarkers,
+                        }))
+                    );
+                }
+
+                function updateCursor(cursorData) {
+                    const { username, position } = cursorData;
+                    showUserCursor(username, position);
+                }
+
+                function showUserCursor(username, position) {
+                    const range = new monaco.Range(position.lineNumber, position.column, position.lineNumber, position.column);
+                    const options = {
+                        className: `user-cursor`,
+                        stickiness: 1,
+                    };
+
+                    if (cursorDecorations[username]) {
+                        cursorDecorations[username] = editor.deltaDecorations(cursorDecorations[username], [{ range, options }]);
+                    } else {
+                        cursorDecorations[username] = editor.deltaDecorations([], [{ range, options }]);
+                    }
+
+                    const cursorCoords =   editor.getScrolledVisiblePosition({ lineNumber: position.lineNumber, column: position.column });
+
+                    if (!cursorCoords) return;
+
+                    let cursorElement = document.querySelector(`.user-cursor[data-username="${username}"]`);
+                    let label = document.querySelector(`.username-label[data-username="${username}"]`);
+
+                    if (!cursorElement) {
+                        cursorElement = document.createElement("div");
+                        cursorElement.className = "user-cursor";
+                        cursorElement.dataset.username = username;
+                        document.body.appendChild(cursorElement);
+                    }
+
+                    if (!label) {
+                        label = document.createElement("div");
+                        label.className = "username-label";
+                        label.dataset.username = username;
+                        label.textContent = `${username} is typing...`;
+                        document.body.appendChild(label);
+                    }
+
+                    cursorElement.style.left = `${cursorCoords.left}px`;
+                    cursorElement.style.top = `${cursorCoords.top + 60}px`;
+                    cursorElement.style.width = "2px";
+                    cursorElement.style.height = "1.2em";
+
+                    const labelOffset = 80;
+                    label.style.left = `${cursorCoords.left}px`;
+                    label.style.top = `${cursorCoords.top + labelOffset}px`;
+                }
+            });
+
+            socket.onopen = () => {
+                console.log("WebSocket connection established");
+                initializeWebRTC();
+            };
+            socket.onerror = (error) => console.error("WebSocket error:", error);
+            socket.onclose = () => console.log("WebSocket connection closed");
+
+            document.getElementById("run-button").addEventListener("click", () => {
+                const code = editor.getValue();
+                const language = document.getElementById("language-select").value;
+                const input = document.getElementById("custom-input").value;
+
+                runCodeWithPistonAPI(code, language, input)
+                    .then((output) => {
+                        if (socket.readyState === WebSocket.OPEN) {
+                            socket.send(
+                                JSON.stringify({
+                                    type: "run-output",
+                                    data: { output, username, clientId },
+                                })
+                            );
+                        }
+                        displayOutput(output);
+                    })
+                    .catch((error) => {
+                        console.error("Error running code:", error);
+                        displayOutput({ output: error.toString() });
+                    });
+            });
+
+            async function runCodeWithPistonAPI(code, language, input) {
+                const response = await fetch("https://emkc.org/api/v2/piston/execute", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        language: language,
+                        files: [{ content: code }],
+                        stdin: input,
+                        version: "*",
+                    }),
+                });
+
+                const result = await response.json();
+                return result.run ? result.run : { output: "No output or error occurred." };
+            }
+
+            function displayOutput(output) {
+                const outputElement = document.getElementById("output");
+                outputElement.textContent = output.output || "No output";
+                outputElement.innerHTML = outputElement.innerHTML.replace(/\n/g, "<br>");
+            }
+
+            function displayInput(input) {
+                const inputElement = document.getElementById("custom-input");
+                inputElement.textContent = input.input || "";
+            }
+
+            function setLanguage(language) {
+                monaco.editor.setModelLanguage(editor.getModel(), language);
+                document.getElementById("language-select").value = language;
+            }
+
+            // WebRTC functions
+            async function initializeWebRTC() {
+                try {
+                    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                    document.getElementById('local-video').srcObject = localStream;
+
+                    peerConnection = new RTCPeerConnection();
+
+                    localStream.getTracks().forEach(track => {
+                        peerConnection.addTrack(track, localStream);
+                    });
+
+                    peerConnection.ontrack = (event) => {
+                        document.getElementById('remote-video').srcObject = event.streams[0];
+                    };
+
+                    peerConnection.onicecandidate = (event) => {
+                        if (event.candidate) {
+                            sendWebRTCSignal({ type: 'ice-candidate', candidate: event.candidate });
+                        }
+                    };
+
+                    await createAndSendOffer();
+                } catch (error) {
+                    console.error('Error setting up WebRTC:', error);
+                }
+            }
+
+            async function createAndSendOffer() {
+                try {
+                    const offer = await peerConnection.createOffer();
+                    await peerConnection.setLocalDescription(offer);
+                    sendWebRTCSignal({ type: 'offer', offer: offer });
+                } catch (error) {
+                    console.error('Error creating offer:', error);
+                }
+            }
+
+            function sendWebRTCSignal(signal) {
+                if (socket.readyState === WebSocket.OPEN) {
+                    socket.send(JSON.stringify({
+                        type: 'webrtc-signal',
+                        data: { signal, username, clientId }
+                    }));
+                }
+            }
+
+            async function handleWebRTCSignal(data) {
+                if (data.signal.type === 'offer') {
+                    await peerConnection.setRemoteDescription(new RTCSessionDescription(data.signal.offer));
+                    const answer = await peerConnection.createAnswer();
+                    await peerConnection.setLocalDescription(answer);
+                    sendWebRTCSignal({ type: 'answer', answer: answer });
+                } else if (data.signal.type === 'answer') {
+                    await peerConnection.setRemoteDescription(new RTCSessionDescription(data.signal.answer));
+                } else if (data.signal.type === 'ice-candidate') {
+                    await peerConnection.addIceCandidate(new RTCIceCandidate(data.signal.candidate));
+                }
+            }
+
+            document.getElementById('toggle-audio').addEventListener('click', () => {
+                isAudioMuted = !isAudioMuted;
+                localStream.getAudioTracks().forEach(track => track.enabled = !isAudioMuted);
+                document.getElementById('toggle-audio').textContent = isAudioMuted ? '🔇' : '🎤';
+            });
+
+            document.getElementById('toggle-video').addEventListener('click', () => {
+                isVideoOff = !isVideoOff;
+                localStream.getVideoTracks().forEach(track => track.enabled = !isVideoOff);
+                document.getElementById('toggle-video').textContent = isVideoOff ? '🚫' : '📹';
+            });
+        </script>
+    </body>
 </html>
