@@ -271,7 +271,7 @@
     // Font size adjustment
     let fontSize = 16;
     const minFontSize = 12;
-    const maxFontSize = 24;
+    const maxFontSize = 40;
 
     document.getElementById('increase-font').addEventListener('click', function() {
       if (fontSize < maxFontSize) {
@@ -287,6 +287,40 @@
       }
     });
 
+    // Intersection Observer for navigation highlighting
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    const options = {
+        threshold: 0.9,  // Trigger when 50% of the section is visible
+        rootMargin: '-50px 0px -50px 0px'  // Adds a margin around the viewport
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove active class from all nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.removeAttribute('aria-current');
+                });
+                
+                // Add active class to corresponding nav link
+                const currentId = `#${entry.target.id}`;
+                const correspondingLink = document.querySelector(`.navbar-nav .nav-link[href="${currentId}"]`);
+                if (correspondingLink) {
+                    correspondingLink.classList.add('active');
+                    correspondingLink.setAttribute('aria-current', 'page');
+                }
+            }
+        });
+    }, options);
+
+    // Observe all sections
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
     // Keyboard navigation for menu items
     const menuItems = document.querySelectorAll('.navbar-nav .nav-link');
     menuItems.forEach((item, index) => {
@@ -299,6 +333,29 @@
           menuItems[(index - 1 + menuItems.length) % menuItems.length].focus();
         }
       });
+    });
+
+    // Font size keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.altKey) {
+            switch(e.key) {
+                case '+':
+                case '=': // Including = since it's the same key as + on most keyboards
+                    e.preventDefault();
+                    if (fontSize < maxFontSize) {
+                        fontSize += 2;
+                        document.body.style.fontSize = fontSize + 'px';
+                    }
+                    break;
+                case '-':
+                    e.preventDefault();
+                    if (fontSize > minFontSize) {
+                        fontSize -= 2;
+                        document.body.style.fontSize = fontSize + 'px';
+                    }
+                    break;
+            }
+        }
     });
 
     // Keyboard shortcuts for navigation
