@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script defer src="/_vercel/insights/script.js"></script>
-  <title>FoodTech</title>
+  <title>FoodTech - Accessible Food Delivery</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Navbar -->
-  <section id="home">
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #28a745;" role="navigation" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand" href="#">FoodTech</a>
@@ -20,19 +19,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto me-3" role="menubar">
           <li class="nav-item" role="none">
-            <a class="nav-link active" aria-current="page" href="#home" id="nav-home" role="menuitem">Home</a>
+            <a class="nav-link active" aria-current="page" href="#home" id="nav-home" role="menuitem" tabindex="0">Home</a>
           </li>
           <li class="nav-item" role="none">
-            <a class="nav-link" href="#menu" id="nav-menu" role="menuitem">Menu</a>
+            <a class="nav-link" href="#menu" id="nav-menu" role="menuitem" tabindex="0">Menu</a>
           </li>
           <li class="nav-item" role="none">
-            <a class="nav-link" href="#specials" id="nav-specials" role="menuitem">Specials</a>
+            <a class="nav-link" href="#specials" id="nav-specials" role="menuitem" tabindex="0">Specials</a>
           </li>
           <li class="nav-item" role="none">
-            <a class="nav-link" href="#about" id="nav-about" role="menuitem">About Us</a>
+            <a class="nav-link" href="#about" id="nav-about" role="menuitem" tabindex="0">About Us</a>
           </li>
           <li class="nav-item" role="none">
-            <a class="nav-link" href="#contact" id="nav-contact" role="menuitem">Contact</a>
+            <a class="nav-link" href="#contact" id="nav-contact" role="menuitem" tabindex="0">Contact</a>
           </li>
         </ul>
 
@@ -56,8 +55,9 @@
     </header>
   </section>
 
-  <!-- Menu Section -->
+  <!-- Main Content -->
   <main id="main-content">
+    <!-- Menu Section -->
     <section id="menu" class="py-5 bg-light">
       <div class="container">
         <h2 class="text-center mb-5">Our Menu</h2>
@@ -71,7 +71,7 @@
                 <p class="text-success fw-bold">$12.99</p>
               </div>
               <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
+                <button class="btn btn-success w-100" tabindex="0">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
                 <p class="text-success fw-bold">$9.99</p>
               </div>
               <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
+                <button class="btn btn-success w-100" tabindex="0">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -97,11 +97,19 @@
                 <p class="text-success fw-bold">$14.99</p>
               </div>
               <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
+                <button class="btn btn-success w-100" tabindex="0">Add to Cart</button>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Your Cart</h2>
+        <p class="text-center">Your cart is currently empty.</p>
       </div>
     </section>
 
@@ -119,7 +127,7 @@
                 <p class="text-success fw-bold">$18.99</p>
               </div>
               <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
+                <button class="btn btn-success w-100" tabindex="0">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -132,7 +140,7 @@
                 <p class="text-success fw-bold">$29.99</p>
               </div>
               <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
+                <button class="btn btn-success w-100" tabindex="0">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -145,7 +153,7 @@
                 <p class="text-success fw-bold">$32.99</p>
               </div>
               <div class="card-footer">
-                <button class="btn btn-success w-100">Add to Cart</button>
+                <button class="btn btn-success w-100" tabindex="0">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -192,15 +200,193 @@
   <footer class="footer">
     <div class="container d-flex justify-content-center">
       <!-- Accessibility Buttons -->
-      <div class="d-flex" role="group" aria-label="Font size controls">
-        <button class="btn btn-outline-light me-2" id="increase-font" aria-label="Increase font size">A+</button>
-        <button class="btn btn-outline-light" id="decrease-font" aria-label="Decrease font size">A-</button>
+      <div class="d-flex" role="group" aria-label="Accessibility controls">
+        <button class="btn btn-outline-light me-2" id="increase-font" aria-label="Increase font size" tabindex="0">A+</button>
+        <button class="btn btn-outline-light me-2" id="decrease-font" aria-label="Decrease font size" tabindex="0">A-</button>
+        <button class="btn btn-outline-light" id="text-to-speech" aria-label="Read page aloud" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+            <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+            <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
+            <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script>
+    // Text-to-Speech functionality
+    const speak = (text) => {
+      if ('speechSynthesis' in window) {
+        speechSynthesis.cancel(); // Cancel any ongoing speech
+        const utterance = new SpeechSynthesisUtterance(text);
+        speechSynthesis.speak(utterance);
+      }
+    };
+
+    // Function to read card content
+    function readCardContent(button) {
+      const card = button.closest('.card');
+      if (card) {
+        const title = card.querySelector('.card-title').textContent;
+        const description = card.querySelector('.card-text').textContent;
+        const price = card.querySelector('.text-success').textContent;
+        const textToRead = `${title}. ${description}. Price: ${price}. Add to cart.`;
+        speak(textToRead);
+      }
+    }
+
+    document.getElementById('text-to-speech').addEventListener('click', function() {
+      let textToRead = document.body.innerText;
+      speak(textToRead);
+    });
+
+    // Stop speech when navigating to a new section
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        speechSynthesis.cancel();
+      });
+    });
+
+    // Read out loud when an element receives focus
+    document.body.addEventListener('focusin', function(e) {
+      const target = e.target;
+      let textToRead = '';
+
+      if (target.tagName === 'A' || target.tagName === 'BUTTON') {
+        if (target.textContent.trim() === 'Add to Cart') {
+          readCardContent(target);
+        } else {
+          textToRead = target.textContent;
+          speak(textToRead);
+        }
+      } else if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+        textToRead = target.placeholder || target.value || target.name;
+        speak(textToRead);
+      }
+    });
+
+    // Font size adjustment
+    let fontSize = 16;
+    const minFontSize = 12;
+    const maxFontSize = 24;
+
+    document.getElementById('increase-font').addEventListener('click', function() {
+      if (fontSize < maxFontSize) {
+        fontSize += 2;
+        document.body.style.fontSize = fontSize + 'px';
+      }
+    });
+
+    document.getElementById('decrease-font').addEventListener('click', function() {
+      if (fontSize > minFontSize) {
+        fontSize -= 2;
+        document.body.style.fontSize = fontSize + 'px';
+      }
+    });
+
+    // Keyboard navigation for menu items
+    const menuItems = document.querySelectorAll('.navbar-nav .nav-link');
+    menuItems.forEach((item, index) => {
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          menuItems[(index + 1) % menuItems.length].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          menuItems[(index - 1 + menuItems.length) % menuItems.length].focus();
+        }
+      });
+    });
+
+    // Keyboard shortcuts for navigation
+    function updateActiveNavItem(sectionId) {
+      document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      });
+      const activeLink = document.querySelector(`.navbar-nav .nav-link[href="${sectionId}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+        activeLink.setAttribute('aria-current', 'page');
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.altKey) {
+        switch(e.key.toLowerCase()) {
+          case 'h':
+            e.preventDefault();
+            document.querySelector('#home').scrollIntoView({behavior: 'smooth'});
+            speak('Navigated to Home section');
+            updateActiveNavItem('#home');
+            break;
+          case 'm':
+            e.preventDefault();
+            document.querySelector('#menu').scrollIntoView({behavior: 'smooth'});
+            speak('Navigated to Menu section');
+            updateActiveNavItem('#menu');
+            break;
+          case 'c':
+            e.preventDefault();
+            document.querySelector('#cart').scrollIntoView({behavior: 'smooth'});
+            speak('Navigated to Cart section');
+            updateActiveNavItem('#cart');
+            break;
+          case 's':
+            e.preventDefault();
+            document.querySelector('#specials').scrollIntoView({behavior: 'smooth'});
+            speak('Navigated to Specials section');
+            updateActiveNavItem('#specials');
+            break;
+          case 'a':
+            e.preventDefault();
+            document.querySelector('#about').scrollIntoView({behavior: 'smooth'});
+            speak('Navigated to About Us section');
+            updateActiveNavItem('#about');
+            break;
+          case 'o':
+            e.preventDefault();
+            document.querySelector('#contact').scrollIntoView({behavior: 'smooth'});
+            speak('Navigated to Contact section');
+            updateActiveNavItem('#contact');
+            break;
+        }
+      }
+    });
+
+    // Focus trap
+    function setupFocusTrap() {
+      const focusableElements = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+      const firstFocusableElement = document.querySelector(focusableElements);
+      const focusableContent = document.querySelectorAll(focusableElements);
+      const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+      document.addEventListener('keydown', function(e) {
+        let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+
+        if (!isTabPressed) {
+          return;
+        }
+
+        if (e.shiftKey) { // shift + tab
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus();
+            e.preventDefault();
+          }
+        } else { // tab
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus();
+            e.preventDefault();
+          }
+        }
+      });
+    }
+
+    // Initialize focus trap
+    setupFocusTrap();
+  </script>
 </body>
 </html>
